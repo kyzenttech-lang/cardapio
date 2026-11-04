@@ -38,7 +38,7 @@ const WHATSAPP_NUMERO = "5519000000000";
     return s;
   }
   function imagem(item, cls) {
-    return el("img", { src: "assets/img/" + item.img + ".svg", width: "800", height: "600", loading: "lazy", alt: item.alt, "class": cls || "" });
+    return el("img", { src: "assets/img/" + item.img + ".webp", width: "800", height: "600", loading: "lazy", alt: item.alt, "class": cls || "" });
   }
   function porId(id) {
     var i, todos = D.ITENS.concat(D.EXTRAS);
@@ -269,7 +269,7 @@ const WHATSAPP_NUMERO = "5519000000000";
   var barra = $("#barra-carrinho");
   function atualizarBarra() {
     var q = qtdCarrinho();
-    $("#bc-texto").textContent = q === 0 ? "Carrinho vazio" : "Ver carrinho · " + q + (q === 1 ? " item" : " itens");
+    $("#bc-texto").textContent = q === 0 ? "Carrinho" : q + (q === 1 ? " item" : " itens");
     $("#bc-total").textContent = q === 0 ? "" : brl(totalCarrinho());
     barra.classList.toggle("tem", q > 0);
     barra.setAttribute("aria-label", q === 0 ? "Abrir carrinho, vazio" : "Abrir carrinho, " + q + (q === 1 ? " item, total " : " itens, total ") + brl(totalCarrinho()));

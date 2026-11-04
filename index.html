@@ -41,6 +41,17 @@
 
 <div class="faixa-demo" role="note">Demonstração: os itens, preços e fotos são de exemplo. Nenhum pedido real é feito.</div>
 
+<div class="barra-topo">
+  <div class="wrap barra-in">
+    <span class="marca-mini">Pizzaria Exemplo</span>
+    <button type="button" class="barra-carrinho" id="barra-carrinho" aria-haspopup="dialog">
+      <svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg>
+      <span id="bc-texto">Carrinho</span>
+      <span class="bc-dir" id="bc-total" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>
+
 <header class="topo">
   <div class="wrap topo-in">
     <div class="marca">
@@ -59,8 +70,8 @@
   <section class="wrap hero-wrap" aria-labelledby="hero-titulo">
     <article class="hero">
       <div class="hero-media">
-        <img src="assets/img/combo-familia.svg" width="800" height="600" loading="lazy"
-             alt="Duas pizzas, uma garrafa de refrigerante e um brownie com sorvete servidos juntos">
+        <img src="assets/img/combo-familia.webp" width="800" height="600" loading="lazy"
+             alt="Colagem com duas pizzas, um copo de refrigerante e um brownie com sorvete">
       </div>
       <div class="hero-txt">
         <p class="selo">Promoção de exemplo</p>
@@ -84,14 +95,6 @@
 <footer class="rodape">
   <p>Demonstração · feita pela <a href="https://kyzenttech-lang.github.io/site/">KYZENT</a></p>
 </footer>
-
-<button type="button" class="barra-carrinho" id="barra-carrinho" aria-haspopup="dialog">
-  <span class="bc-esq">
-    <svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg>
-    <span id="bc-texto">Carrinho vazio</span>
-  </span>
-  <span class="bc-dir" id="bc-total" aria-hidden="true"></span>
-</button>
 
 <!-- Sugestões depois de adicionar -->
 <dialog class="sheet" id="dlg-sugestao" aria-labelledby="sug-titulo">

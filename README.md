@@ -17,7 +17,7 @@ No começo de `js/app.js`, na constante `WHATSAPP_NUMERO`, no formato
 
 ## Onde mudar o cardápio
 
-`js/data.js` (categorias, itens, preços, sugestões). Créditos das imagens e da
+`js/data.js` (categorias, itens, preços, sugestões). Créditos das fotos e da
 fonte em `assets/CREDITOS.md`.
 
 KYZENT: https://kyzenttech-lang.github.io/site/
