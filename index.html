@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pizzaria Exemplo · Cardápio online (demonstração)</title>
+  <meta name="description" content="Demonstração de cardápio online para pizzarias, feita pela KYZENT. Itens, preços e imagens são de exemplo.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0B0B0F" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Ícones (sprite) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-combo" viewBox="0 0 24 24"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></symbol>
+    <symbol id="i-pizza" viewBox="0 0 24 24"><path d="M12 21 3.5 6.5a17 17 0 0 1 17 0L12 21z"/><circle cx="12" cy="9.5" r="1.2"/><circle cx="10" cy="13" r="1"/><circle cx="14" cy="13" r="1"/></symbol>
+    <symbol id="i-lanche" viewBox="0 0 24 24"><path d="M4 11a8 8 0 0 1 16 0H4z"/><path d="M3 14.5h18"/><path d="M5 18h14v.5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V18z"/></symbol>
+    <symbol id="i-porcao" viewBox="0 0 24 24"><path d="M6 10l1 10h10l1-10H6z"/><path d="M8.5 10V5M12 10V3M15.5 10V6"/></symbol>
+    <symbol id="i-bebida" viewBox="0 0 24 24"><path d="M6.5 7h11l-1.4 13h-8.2L6.5 7z"/><path d="M5.5 7h13"/><path d="M13 7l1.2-4H17"/></symbol>
+    <symbol id="i-sobremesa" viewBox="0 0 24 24"><path d="M7.5 12.5a4.5 4.5 0 1 1 9 0"/><path d="M6.5 12.5h11L12 21.5l-5.5-9z"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="6" cy="16.5" r="3.2"/><circle cx="18" cy="16.5" r="3.2"/><path d="M6 16.5l3.5-7h5l3.5 7M9.5 9.5H8M13 9.5l-2 7"/></symbol>
+    <symbol id="i-pot" viewBox="0 0 24 24"><path d="M4 11h16l-1.5 8h-13L4 11z"/><path d="M8 8c0-1.5 1.5-1.5 1.5-3M12 8c0-1.5 1.5-1.5 1.5-3M16 8c0-1.5 1.5-1.5 1.5-3"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z"/><path d="M9 8h6M9 12h6"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/></symbol>
+  </defs>
+</svg>
+
+<a class="pular" href="#cardapio">Ir para o cardápio</a>
+
+<div class="faixa-demo" role="note">Demonstração: os itens, preços e fotos são de exemplo. Nenhum pedido real é feito.</div>
+
+<header class="topo">
+  <div class="wrap topo-in">
+    <div class="marca">
+      <h1>Pizzaria Exemplo</h1>
+      <p class="sub">Pizzas, lanches e porções para pedir sem sair de casa</p>
+      <p class="horario"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> Delivery das 18h às 23h</p>
+    </div>
+    <button type="button" class="btn btn-sec" id="abrir-acompanhe">
+      <svg class="ic" aria-hidden="true"><use href="#i-receipt"/></svg>
+      Acompanhe seu pedido
+    </button>
+  </div>
+</header>
+
+<main id="topo-main">
+  <section class="wrap hero-wrap" aria-labelledby="hero-titulo">
+    <article class="hero">
+      <div class="hero-media">
+        <img src="assets/img/combo-familia.svg" width="800" height="600" loading="lazy"
+             alt="Duas pizzas, uma garrafa de refrigerante e um brownie com sorvete servidos juntos">
+      </div>
+      <div class="hero-txt">
+        <p class="selo">Promoção de exemplo</p>
+        <h2 id="hero-titulo">Combo Família</h2>
+        <p class="hero-desc">Duas pizzas grandes, refrigerante de 2 litros e sobremesa por um preço menor do que no avulso.</p>
+        <p class="hero-preco"><span class="de" id="hero-de"></span> <strong id="hero-por"></strong> <span class="eco" id="hero-eco"></span></p>
+        <button type="button" class="btn btn-prim" id="hero-pedir">
+          <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg> Pedir este combo
+        </button>
+      </div>
+    </article>
+  </section>
+
+  <nav class="cats" id="cats" aria-label="Categorias do cardápio">
+    <ul class="wrap cats-lista" id="cats-lista"></ul>
+  </nav>
+
+  <div class="wrap" id="cardapio"></div>
+</main>
+
+<footer class="rodape">
+  <p>Demonstração · feita pela <a href="https://kyzenttech-lang.github.io/site/">KYZENT</a></p>
+</footer>
+
+<button type="button" class="barra-carrinho" id="barra-carrinho" aria-haspopup="dialog">
+  <span class="bc-esq">
+    <svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg>
+    <span id="bc-texto">Carrinho vazio</span>
+  </span>
+  <span class="bc-dir" id="bc-total" aria-hidden="true"></span>
+</button>
+
+<!-- Sugestões depois de adicionar -->
+<dialog class="sheet" id="dlg-sugestao" aria-labelledby="sug-titulo">
+  <div class="sheet-in">
+    <div class="sheet-topo">
+      <p class="adicionado"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> <span id="sug-adicionado"></span></p>
+    </div>
+    <h2 id="sug-titulo">Quer adicionar?</h2>
+    <ul class="sug-lista" id="sug-lista"></ul>
+    <div class="sheet-acoes">
+      <button type="button" class="btn btn-sec" id="sug-nao">Não, obrigado</button>
+      <button type="button" class="btn btn-prim" id="sug-carrinho">Ver carrinho</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Carrinho -->
+<dialog class="sheet sheet-cheio" id="dlg-carrinho" aria-labelledby="car-titulo">
+  <div class="sheet-in">
+    <div class="sheet-cab">
+      <h2 id="car-titulo">Seu pedido</h2>
+      <button type="button" class="icone-btn" data-fechar aria-label="Fechar carrinho"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+
+    <div id="car-vazio" class="vazio" hidden>
+      <p>Seu carrinho está vazio.</p>
+      <button type="button" class="btn btn-sec" data-fechar>Voltar ao cardápio</button>
+    </div>
+
+    <form id="car-form" novalidate>
+      <ul class="car-itens" id="car-itens"></ul>
+
+      <div class="campo">
+        <label for="f-obs">Observação <span class="opc">(opcional)</span></label>
+        <textarea id="f-obs" name="obs" rows="2" maxlength="300" placeholder="Ex.: sem cebola, tirar a azeitona"></textarea>
+      </div>
+      <div class="campo">
+        <label for="f-nome">Seu nome</label>
+        <input id="f-nome" name="nome" type="text" autocomplete="name" required maxlength="80" aria-describedby="erro-nome">
+        <p class="erro" id="erro-nome" hidden>Informe seu nome.</p>
+      </div>
+      <div class="campo">
+        <label for="f-end">Endereço de entrega</label>
+        <input id="f-end" name="end" type="text" autocomplete="street-address" required maxlength="160" placeholder="Rua, número, bairro" aria-describedby="erro-end">
+        <p class="erro" id="erro-end" hidden>Informe o endereço de entrega.</p>
+      </div>
+      <div class="campo">
+        <label for="f-pag">Forma de pagamento</label>
+        <select id="f-pag" name="pag">
+          <option>Pix</option>
+          <option>Cartão (na entrega)</option>
+          <option>Dinheiro</option>
+        </select>
+      </div>
+
+      <div class="car-total"><span>Total</span><strong id="car-total">R$ 0,00</strong></div>
+      <p class="nota">Ao enviar, abrimos o WhatsApp com o pedido já escrito. Nesta demonstração, o número é de teste.</p>
+      <button type="submit" class="btn btn-prim btn-grande" id="enviar">Enviar pedido</button>
+    </form>
+  </div>
+</dialog>
+
+<!-- Acompanhe seu pedido (ilustrativo) -->
+<dialog class="sheet" id="dlg-acompanhe" aria-labelledby="ac-titulo">
+  <div class="sheet-in">
+    <div class="sheet-cab">
+      <h2 id="ac-titulo">Acompanhe seu pedido</h2>
+      <button type="button" class="icone-btn" data-fechar aria-label="Fechar"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <p class="ilustrativo">Tela ilustrativa: mostra como o cliente poderia acompanhar o pedido. Os dados abaixo não são reais.</p>
+    <p class="ac-pedido">Pedido nº 0000 · exemplo</p>
+    <ol class="linha" aria-label="Etapas do pedido">
+      <li class="feito"><span class="marco"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span><div><strong>Recebido</strong><span>Etapa concluída · 19:02</span></div></li>
+      <li class="atual" aria-current="step"><span class="marco"><svg class="ic" aria-hidden="true"><use href="#i-pot"/></svg></span><div><strong>Em preparo</strong><span>Etapa atual · previsão de 25 min</span></div></li>
+      <li><span class="marco"><svg class="ic" aria-hidden="true"><use href="#i-bike"/></svg></span><div><strong>Saiu para entrega</strong><span>Etapa seguinte</span></div></li>
+      <li><span class="marco"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg></span><div><strong>Entregue</strong><span>Etapa seguinte</span></div></li>
+    </ol>
+    <div class="sheet-acoes"><button type="button" class="btn btn-prim" data-fechar>Fechar</button></div>
+  </div>
+</dialog>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
