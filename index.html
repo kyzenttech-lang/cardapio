@@ -43,7 +43,7 @@
 
 <div class="barra-topo">
   <div class="wrap barra-in">
-    <span class="marca-mini">Pizzaria Exemplo</span>
+    <h1 class="marca-mini">Pizzaria Exemplo</h1>
     <button type="button" class="barra-carrinho" id="barra-carrinho" aria-haspopup="dialog">
       <svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg>
       <span id="bc-texto">Carrinho</span>
@@ -54,15 +54,14 @@
 
 <header class="topo">
   <div class="wrap topo-in">
-    <div class="marca">
-      <h1>Pizzaria Exemplo</h1>
-      <p class="sub">Pizzas, lanches e porções para pedir sem sair de casa</p>
+    <p class="sub">Pizzas, lanches e porções para pedir sem sair de casa</p>
+    <div class="topo-linha">
       <p class="horario"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg> Delivery das 18h às 23h</p>
+      <button type="button" class="btn btn-sec btn-peq" id="abrir-acompanhe">
+        <svg class="ic" aria-hidden="true"><use href="#i-receipt"/></svg>
+        Acompanhe seu pedido
+      </button>
     </div>
-    <button type="button" class="btn btn-sec" id="abrir-acompanhe">
-      <svg class="ic" aria-hidden="true"><use href="#i-receipt"/></svg>
-      Acompanhe seu pedido
-    </button>
   </div>
 </header>
 
@@ -95,6 +94,19 @@
 <footer class="rodape">
   <p>Demonstração · feita pela <a href="https://kyzenttech-lang.github.io/site/">KYZENT</a></p>
 </footer>
+
+<!-- Escolha de tamanho (pizzas) -->
+<dialog class="sheet" id="dlg-tamanho" aria-labelledby="tam-titulo">
+  <div class="sheet-in">
+    <div class="sheet-cab">
+      <h2 id="tam-titulo"></h2>
+      <button type="button" class="icone-btn" data-fechar aria-label="Fechar"><svg class="ic" aria-hidden="true"><use href="#i-close"/></svg></button>
+    </div>
+    <p class="desc" id="tam-desc"></p>
+    <fieldset class="tam-lista" id="tam-lista"><legend>Escolha o tamanho</legend></fieldset>
+    <button type="button" class="btn btn-prim btn-grande" id="tam-add"></button>
+  </div>
+</dialog>
 
 <!-- Sugestões depois de adicionar -->
 <dialog class="sheet" id="dlg-sugestao" aria-labelledby="sug-titulo">

@@ -84,9 +84,9 @@ const WHATSAPP_NUMERO = "5519000000000";
   function fechar(dlg) {
     if (typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open");
   }
-  var dlgSug = $("#dlg-sugestao"), dlgCar = $("#dlg-carrinho"), dlgAc = $("#dlg-acompanhe");
+  var dlgSug = $("#dlg-sugestao"), dlgCar = $("#dlg-carrinho"), dlgAc = $("#dlg-acompanhe"), dlgTam = $("#dlg-tamanho");
   var ultimoFoco = null;
-  [dlgSug, dlgCar, dlgAc].forEach(function (d) {
+  [dlgSug, dlgCar, dlgAc, dlgTam].forEach(function (d) {
     d.addEventListener("click", function (e) { if (e.target === d) fechar(d); }); /* toque fora fecha */
     d.addEventListener("close", function () { if (ultimoFoco && document.contains(ultimoFoco)) ultimoFoco.focus(); });
     $$("[data-fechar]", d).forEach(function (b) { b.addEventListener("click", function () { fechar(d); }); });
@@ -99,6 +99,8 @@ const WHATSAPP_NUMERO = "5519000000000";
 
   function precoCombo(item) { return { de: item.valorSeparado, por: item.preco, eco: item.valorSeparado - item.preco }; }
 
+  var FATIAS = ["4 fatias · 1 pessoa", "6 fatias · 2 pessoas", "8 fatias · 3 a 4 pessoas"];
+
   function montarCard(item) {
     var ehPizza = !!item.precos;
     var ehCombo = item.cat === "combos";
@@ -109,65 +111,65 @@ const WHATSAPP_NUMERO = "5519000000000";
     var info = el("div", { "class": "card-info" });
     if (item.selo) info.appendChild(el("p", { "class": "selo", text: item.selo }));
     info.appendChild(el("h3", { id: idNome, text: item.nome }));
-    info.appendChild(el("p", { "class": "desc", text: item.desc }));
-    if (ehCombo) {
-      var ul = el("ul", { "class": "inclui", "aria-label": "O que vem no combo" });
-      item.inclui.forEach(function (t) { ul.appendChild(el("li", {}, [icone("check"), el("span", { text: t })])); });
-      info.appendChild(ul);
-    }
+    info.appendChild(el("p", { "class": "desc", text: ehCombo ? "Inclui: " + item.inclui.join(" + ") : item.desc }));
 
-    var foot = el("div", { "class": "card-foot" });
-    var preco = el("p", { "class": "preco" + (ehCombo ? " preco-combo" : "") });
-    var tamanhoAtual = 1; /* Média por padrão */
-
+    var preco = el("p", { "class": "preco" });
     if (ehPizza) {
-      var grupo = el("fieldset", { "class": "tamanhos" }, [el("legend", { "class": "sr", text: "Tamanho da " + item.nome })]);
-      D.TAMANHOS.forEach(function (t, i) {
-        var rid = "t-" + item.id + "-" + i;
-        var inp = el("input", { type: "radio", name: "tam-" + item.id, id: rid, value: String(i) });
-        if (i === tamanhoAtual) inp.checked = true;
-        inp.addEventListener("change", function () { tamanhoAtual = i; pintarPreco(); });
-        var lab = el("label", { "for": rid }, [el("span", { "class": "t-nome", text: t }), el("span", { "class": "t-preco", text: brl(item.precos[i]) })]);
-        grupo.appendChild(inp); grupo.appendChild(lab);
-      });
-      foot.appendChild(grupo);
+      preco.appendChild(el("span", { "class": "de-parte", text: "A partir de" }));
+      preco.appendChild(el("strong", { text: brl(item.precos[0]) }));
+    } else if (ehCombo) {
+      var c = precoCombo(item);
+      preco.appendChild(el("span", { "class": "de", text: "De " + brl(c.de) }));
+      preco.appendChild(el("strong", { text: brl(c.por) }));
+      preco.appendChild(el("span", { "class": "eco", text: "Economize " + brl(c.eco) }));
+      preco.classList.add("preco-combo");
+    } else {
+      preco.appendChild(el("strong", { text: brl(item.preco) }));
     }
 
-    function pintarPreco() {
-      preco.textContent = "";
-      if (ehPizza) {
-        preco.appendChild(el("strong", { text: brl(item.precos[tamanhoAtual]) }));
-      } else if (ehCombo) {
-        var c = precoCombo(item);
-        preco.appendChild(el("span", { "class": "de", text: "De " + brl(c.de) }));
-        preco.appendChild(el("strong", { text: brl(c.por) }));
-        preco.appendChild(el("span", { "class": "eco", text: "Economize " + brl(c.eco) }));
-      } else {
-        preco.appendChild(el("strong", { text: brl(item.preco) }));
-      }
-    }
-    pintarPreco();
-
-    var btn = el("button", { type: "button", "class": "btn btn-prim", "aria-label": "Adicionar " + item.nome + " ao pedido" }, [icone("plus"), el("span", { text: "Adicionar" })]);
+    var rotulo = ehPizza ? "Escolher" : "Adicionar";
+    var btn = el("button", { type: "button", "class": "btn btn-prim", "aria-label": rotulo + " " + item.nome }, [icone("plus"), el("span", { text: rotulo })]);
     btn.addEventListener("click", function () {
       lembrarFoco();
-      var linha;
-      if (ehPizza) {
-        linha = { key: item.id + ":" + tamanhoAtual, nome: item.nome, detalhe: D.TAMANHOS[tamanhoAtual], preco: item.precos[tamanhoAtual] };
-      } else {
-        linha = { key: item.id, nome: item.nome, detalhe: "", preco: item.preco };
-      }
+      if (ehPizza) { abrirTamanho(item); return; }
+      var linha = { key: item.id, nome: item.nome, detalhe: "", preco: item.preco };
       adicionar(linha);
       mostrarSugestoes(item, linha);
     });
 
-    var linhaFim = el("div", { "class": "foot-fim" }, [preco, btn]);
-    foot.appendChild(linhaFim);
-
     card.appendChild(info);
     card.appendChild(media);
-    card.appendChild(foot);
+    card.appendChild(el("div", { "class": "card-foot" }, [preco, btn]));
     return card;
+  }
+
+  /* ---------- escolha de tamanho ---------- */
+  function abrirTamanho(item) {
+    $("#tam-titulo").textContent = item.nome;
+    $("#tam-desc").textContent = item.desc;
+    var lista = $("#tam-lista");
+    $$(".tam-op", lista).forEach(function (n) { n.remove(); });
+    var botao = $("#tam-add"), atual = 1;
+    function pintar() { botao.textContent = "Adicionar · " + brl(item.precos[atual]); }
+    D.TAMANHOS.forEach(function (t, i) {
+      var rid = "tam-" + i;
+      var inp = el("input", { type: "radio", name: "tam", id: rid, value: String(i) });
+      if (i === atual) inp.checked = true;
+      inp.addEventListener("change", function () { atual = i; pintar(); });
+      var lab = el("label", { "for": rid, "class": "tam-lab" }, [
+        el("span", { "class": "tam-txt" }, [el("strong", { text: t }), el("span", { text: FATIAS[i] })]),
+        el("span", { "class": "tam-preco", text: brl(item.precos[i]) })
+      ]);
+      lista.appendChild(el("div", { "class": "tam-op" }, [inp, lab]));
+    });
+    pintar();
+    botao.onclick = function () {
+      var linha = { key: item.id + ":" + atual, nome: item.nome, detalhe: D.TAMANHOS[atual], preco: item.precos[atual] };
+      adicionar(linha);
+      fechar(dlgTam);
+      mostrarSugestoes(item, linha);
+    };
+    abrir(dlgTam);
   }
 
   function montarMenu() {
