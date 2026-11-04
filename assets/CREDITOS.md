@@ -43,7 +43,7 @@ As imagens `combo-*.webp` são colagens feitas com as fotos dos próprios itens 
 
 ## Fonte
 
-- Mona Sans, de GitHub. Licença SIL Open Font License 1.1. Arquivos em `assets/fonts/`.
+- Bebas Neue (Ryoichi Tsunekawa) e Barlow (Jeremy Tribby), via Google Fonts. Licença SIL Open Font License 1.1. Arquivos em `assets/fonts/`.
 
 ## Ícones
 

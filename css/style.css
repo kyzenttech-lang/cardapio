@@ -1,22 +1,44 @@
-/* Cardápio de demonstração · identidade KYZENT. Mobile primeiro (360px). */
+/* Cardápio de demonstração. Fontes: Bebas Neue (títulos e preços) e Barlow (texto). Mobile primeiro (360px). */
 
 @font-face {
-  font-family: "Mona Sans";
+  font-family: "Barlow";
   font-style: normal;
-  font-weight: 400 800;
-  font-stretch: 75% 125%;
+  font-weight: 400;
   font-display: swap;
-  src: url("../assets/fonts/mona-sans-latin.woff2") format("woff2");
+  src: url("../assets/fonts/barlow-400-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Mona Sans";
+  font-family: "Barlow";
   font-style: normal;
-  font-weight: 400 800;
-  font-stretch: 75% 125%;
+  font-weight: 500;
   font-display: swap;
-  src: url("../assets/fonts/mona-sans-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  src: url("../assets/fonts/barlow-500-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/barlow-600-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/barlow-700-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/bebas-neue-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 :root {
@@ -40,7 +62,8 @@
   --corte: 14px;
   --bar-h: 60px;
   --nav-h: 128px;
-  --fonte: "Mona Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fonte: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --titulo: "Bebas Neue", Impact, "Arial Narrow", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -94,7 +117,7 @@ a { color: var(--link); text-underline-offset: 3px; }
 
 .topo { padding-block: 20px 8px; }
 .topo-in { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
-.marca h1 { font-size: 30px; line-height: 1.1; font-weight: 750; font-stretch: 112%; letter-spacing: -.01em; }
+.marca h1 { font-size: 30px; line-height: 1.1; font-weight: 750; letter-spacing: -.01em; }
 .sub { color: var(--muda); margin-top: 6px; }
 .horario { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-weight: 600; }
 .horario .ic { width: 18px; height: 18px; color: var(--vermelho); }
@@ -140,7 +163,7 @@ a { color: var(--link); text-underline-offset: 3px; }
 }
 .hero-media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .hero-txt { padding: 18px 18px 22px; display: grid; gap: 10px; justify-items: start; }
-.hero h2 { font-size: 28px; line-height: 1.1; font-weight: 750; font-stretch: 110%; }
+.hero h2 { font-size: 28px; line-height: 1.1; font-weight: 750; }
 .hero-desc { color: var(--muda); }
 .hero-preco { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
 .hero-preco strong { font-size: 28px; font-weight: 750; }
@@ -171,7 +194,7 @@ a { color: var(--link); text-underline-offset: 3px; }
 
 /* ---------- seções e cards ---------- */
 .secao { padding-top: 28px; scroll-margin-top: calc(var(--nav-h) + 4px); }
-.secao h2 { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 750; font-stretch: 108%; margin-bottom: 14px; }
+.secao h2 { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 750; margin-bottom: 14px; }
 .secao h2 .ic { color: var(--link); width: 26px; height: 26px; }
 .grade { display: grid; gap: 14px; }
 
@@ -234,7 +257,7 @@ a { color: var(--link); text-underline-offset: 3px; }
 /* ---------- barra fixa com o carrinho (canto superior direito) ---------- */
 .barra-topo { position: sticky; top: 0; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--linha); }
 .barra-in { max-width: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: var(--bar-h); }
-.marca-mini { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font-weight: 750; font-stretch: 110%; font-size: 17px; letter-spacing: -.01em; }
+.marca-mini { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font-weight: 750; font-size: 17px; letter-spacing: -.01em; }
 .barra-carrinho {
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border: 0;
   font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; background: var(--surface-2); color: var(--texto); white-space: nowrap; flex: none;
@@ -265,7 +288,7 @@ dialog.sheet[open]::backdrop { animation: aparece .25s ease-out; }
 @keyframes aparece { from { opacity: 0; } to { opacity: 1; } }
 .sheet-in { padding: 18px 16px 20px; display: grid; gap: 14px; }
 .sheet-cab { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.sheet h2 { font-size: 22px; font-weight: 750; font-stretch: 108%; }
+.sheet h2 { font-size: 22px; font-weight: 750; }
 .sheet-acoes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .adicionado { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--muda); font-size: 14px; }
 .adicionado .ic { color: var(--link); width: 20px; height: 20px; }
@@ -338,3 +361,22 @@ input[aria-invalid="true"] { border-color: var(--erro); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* ---------- Bebas Neue nos títulos, nomes e preços ---------- */
+.marca h1, .hero h2, .secao h2, .card h3, .sheet h2, .marca-mini, .preco strong, .hero-preco strong, .car-total strong, .bc-dir, .ci-sub {
+  font-family: var(--titulo); font-weight: 400; letter-spacing: .02em;
+}
+.marca h1 { font-size: 40px; }
+.hero h2 { font-size: 44px; line-height: 1; }
+.hero-preco strong { font-size: 38px; }
+.secao h2 { font-size: 34px; line-height: 1; }
+.secao h2 .ic { width: 28px; height: 28px; }
+.card h3 { font-size: 25px; line-height: 1.05; }
+.preco strong { font-size: 30px; line-height: 1; }
+.sheet h2 { font-size: 32px; line-height: 1; }
+.marca-mini { font-size: 24px; }
+.bc-dir { font-size: 20px; }
+.ci-sub { font-size: 24px; }
+.car-total strong { font-size: 36px; }
+@media (max-width: 420px) { .marca-mini { font-size: 21px; } .bc-dir { font-size: 18px; } }
+@media (min-width: 1000px) { .hero h2 { font-size: 64px; } }
